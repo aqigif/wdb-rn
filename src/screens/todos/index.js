@@ -12,13 +12,14 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 const TodoList = props => {
   const [text, setText] = useState('');
+  const {database} = props;
 
   const actionAdd = async () => {
     if (text === '') {
       return;
     }
     await props.database.action(async () => {
-      await props.database.collections.get('posts').create(post => {
+      await database.collections.get('posts').create(post => {
         post.title = 'New post';
         post.body = text;
       });
@@ -27,7 +28,7 @@ const TodoList = props => {
   };
 
   const actionDelete = post => async () => {
-    await props.database.action(async () => {
+    await database.action(async () => {
       await post.destroyPermanently();
     });
   };
@@ -38,8 +39,9 @@ const TodoList = props => {
         <ScrollView>
           {props.posts.map((post, i) => (
             <View key={i} style={styles.todoItem}>
+              <Text>{post.title}</Text>
               <Text>{post.body}</Text>
-              <Text onPress={actionDelete(post)}>delete</Text>
+              <Text onPress={actionDelete(post)} style={{color: 'red'}}>delete</Text>
             </View>
           ))}
         </ScrollView>

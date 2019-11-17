@@ -1,5 +1,5 @@
 import {Model} from '@nozbe/watermelondb';
-import {field, action} from '@nozbe/watermelondb/decorators';
+import {field} from '@nozbe/watermelondb/decorators';
 
 export default class Post extends Model {
   static table = 'posts';
@@ -7,17 +7,6 @@ export default class Post extends Model {
   @field('title')
   title;
 
-  @field('subtitle')
-  subtitle;
-
   @field('body')
   body;
-
-  @action
-  async addComment() {
-    return this.collections.get('posts').create(post => {
-      post.title = 'asupkeun';
-      post.body = 'Lorem ipsum dolor sit';
-    });
-  }
 }
