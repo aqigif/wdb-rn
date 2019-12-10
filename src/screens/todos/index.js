@@ -41,7 +41,9 @@ const TodoList = props => {
             <View key={i} style={styles.todoItem}>
               <Text>{post.title}</Text>
               <Text>{post.body}</Text>
-              <Text onPress={actionDelete(post)} style={{color: 'red'}}>delete</Text>
+              <Text onPress={actionDelete(post)} style={styles.buttonDelete}>
+                delete
+              </Text>
             </View>
           ))}
         </ScrollView>
@@ -105,5 +107,8 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  buttonDelete: {
+    color: 'red',
   },
 });
