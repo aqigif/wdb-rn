@@ -39,7 +39,7 @@ const TodoList = props => {
         <ScrollView>
           {props.posts.map((post, i) => (
             <View key={i} style={styles.todoItem}>
-              <Text>{post.title}</Text>
+              {/* <Text>{post.title}</Text> */}
               <Text>{post.body}</Text>
               <Text onPress={actionDelete(post)} style={styles.buttonDelete}>
                 delete
